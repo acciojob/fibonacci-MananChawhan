@@ -1,16 +1,69 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Fibonacci Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f5f5f5;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    #output {
+      margin-top: 20px;
+      padding: 15px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+  </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+
+  <h2>Find nth Fibonacci Number</h2>
+
+  <label for="fibInput">Enter a number (0 to 50):</label>
+  <input type="number" id="fibInput" min="0" max="50" placeholder="e.g. 5">
+
+  <button onclick="calculateFibonacci()">Get Fibonacci</button>
+
+  <div id="output"></div>
+
+  <script>
+    function fibonacci(num) {
+      if (num === 0) return 0;
+      if (num === 1) return 0;
+      if (num === 2) return 1;
+
+      let a = 0, b = 1, c;
+      for (let i = 3; i <= num; i++) {
+        c = a + b;
+        a = b;
+        b = c;
+      }
+      return b;
+    }
+
+    function calculateFibonacci() {
+      const input = document.getElementById("fibInput").value;
+      const output = document.getElementById("output");
+
+      const n = parseInt(input);
+      if (isNaN(n) || n < 0 || n > 50) {
+        output.innerText = "Please enter a number between 0 and 50.";
+        return;
+      }
+
+      const result = fibonacci(n);
+      output.innerText = `Fibonacci number at position ${n} is: ${result}`;
+    }
+  </script>
 
 </body>
-
 </html>
